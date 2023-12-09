@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Department #<%= @the_department.id %> details
+      <%= @the_department.name %> Drops and Swaps
     </h1>
 
     <div>
@@ -11,16 +11,9 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_department/<%= @the_department.id %>">
-          Delete department
-        </a>
-      </div>
-    </div>
-
     <dl>
       <dt>
-        Bids count
+        Posts count
       </dt>
       <dd>
         <%= @the_department.bids_count %>
@@ -49,23 +42,97 @@
 <div>
   <div>
     <h2>
-      Edit department
-    </h2>
+  Add a new bid
+</h2>
 
-    <form action="/modify_department/<%= @the_department.id %>"  method="post" >
-      <div>
-        <label for="bids_count_box">
-          Bids count
+<form action="/insert_bid" method="post">
+
+  <div>
+    <label for="bid_amount_box">
+      Bid Amount
+    </label>
+
+    <input type="text" id="bid_amount_box" name="query_bid_amount">
+  </div>
+
+  <div>
+    <label for="title_box">
+      Title
+    </label>
+    <textarea id="title_box" name="query_title"></textarea>
+  </div>
+
+  <div>
+    <label for="body_box">
+      Drop / Swap Description
+    </label>
+
+    <textarea id="body_box" name="query_description" rows="3"></textarea>
+  </div>
+
+  <div>
+    <label for="expires_on_box">
+      Auction Deadline
+    </label>
+
+    <input type="date" id="expires_on_box" name="query_deadline">
+  </div>
+
+   <div>
+        <label for="board_id_box">
+          Department
         </label>
 
-        <input type="text" id="bids_count_box" name="query_bids_count" value="<%= @the_department.bids_count %>">
+        <input type="text" id="board_id_box" name="department_id">
       </div>
 
-      <button>
-        Update department
-      </button>
-    </form>
-  </div>
-</div>
+  <button>
+    Add post
+  </button>
+</form>
 
 <hr>
+
+<h2>Active drops and swaps</h2>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Bid Amount</th>
+    <th>Auctioner</th>
+    <th>Deadline</th>
+  </tr>
+
+  <% @active_bids.each do |a_bid| %>
+    <tr>
+      <td><%= a_bid.title %></td>
+      <td><%= a_bid.decription %></td>
+      <td><%= a_bid.bid_amount %></td>      
+      <td><%= a_bid.auctioner.full_name %></td>
+      <td><%= a_bid.deadline.strftime("%b %e, %Y") %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Expired posts</h2>
+
+<table border="1">
+    <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Bid Amount</th>
+    <th>Auctioner</th>
+    <th>Deadline</th>
+  </tr>
+
+  <% @expired_bids.each do |a_bid| %>
+    <tr>
+      <td><%= a_bid.title %></td>
+      <td><%= a_bid.decription %></td>
+      <td><%= a_bid.bid_amount %></td>      
+      <td><%= a_bid.auctioner.full_name %></td>
+      <td><%= a_bid.deadline.strftime("%b %e, %Y") %></td>
+    </tr>
+  <% end %>
+</table>

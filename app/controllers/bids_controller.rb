@@ -21,10 +21,9 @@ class BidsController < ApplicationController
     the_bid = Bid.new
     the_bid.bid_amount = params.fetch("query_bid_amount")
     the_bid.auctioner_id = params.fetch("query_auctioner_id")
-    the_bid.buyer_id = params.fetch("query_buyer_id")
+    the_bid.buyer_id = "None"
     the_bid.department_id = params.fetch("query_department_id")
     the_bid.title = params.fetch("query_title")
-    the_bid.price = params.fetch("query_price")
     the_bid.description = params.fetch("query_description")
     the_bid.deadline = params.fetch("query_deadline")
 
@@ -42,12 +41,12 @@ class BidsController < ApplicationController
 
     the_bid.bid_amount = params.fetch("query_bid_amount")
     the_bid.auctioner_id = params.fetch("query_auctioner_id")
-    the_bid.buyer_id = params.fetch("query_buyer_id")
+    the_bid.buyer_id = "None"
     the_bid.department_id = params.fetch("query_department_id")
     the_bid.title = params.fetch("query_title")
-    the_bid.price = params.fetch("query_price")
     the_bid.description = params.fetch("query_description")
     the_bid.deadline = params.fetch("query_deadline")
+
 
     if the_bid.valid?
       the_bid.save
@@ -65,4 +64,17 @@ class BidsController < ApplicationController
 
     redirect_to("/bids", { :notice => "Bid deleted successfully."} )
   end
+
+  def comment
+    input_bid_id = params.fetch("input_bid_id")
+    input_author_id = params.fetch("input_author_id")
+    input_comment = params.fetch("input_comment")
+    new_comment = Comment.new
+    new_comment.body = input_comment
+    new_comment.author_id = input_author_id
+    new_comment.bid_id = input_bid_id
+    new_comment.save
+    redirect_to("/bids/" + input_bid_id)
+  end
+
 end

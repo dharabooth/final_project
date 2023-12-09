@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_09_194216) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_09_202854) do
   create_table "bids", force: :cascade do |t|
     t.integer "bid_amount"
     t.integer "auctioner_id"
     t.integer "buyer_id"
     t.integer "department_id"
     t.string "title"
-    t.integer "price"
     t.string "description"
     t.date "deadline"
     t.datetime "created_at", null: false
