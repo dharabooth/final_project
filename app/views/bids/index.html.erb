@@ -1,0 +1,198 @@
+<div>
+  <div>
+    <h1>
+      List of all bids
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new bid
+    </h2>
+
+    <form action="/insert_bid" method="post">
+      <div>
+        <label for="bid_amount_box">
+          Bid amount
+        </label>
+
+        <input type="text" id="bid_amount_box" name="query_bid_amount">
+      </div>
+
+      <div>
+        <label for="auctioner_id_box">
+          Auctioner
+        </label>
+
+        <input type="text" id="auctioner_id_box" name="query_auctioner_id">
+      </div>
+
+      <div>
+        <label for="buyer_id_box">
+          Buyer
+        </label>
+
+        <input type="text" id="buyer_id_box" name="query_buyer_id">
+      </div>
+
+      <div>
+        <label for="department_id_box">
+          Department
+        </label>
+
+        <input type="text" id="department_id_box" name="query_department_id">
+      </div>
+
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title">
+      </div>
+
+      <div>
+        <label for="price_box">
+          Price
+        </label>
+
+        <input type="text" id="price_box" name="query_price">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="deadline_box">
+          Deadline
+        </label>
+
+        <input type="date" id="deadline_box" name="query_deadline">
+      </div>
+
+      <button>
+        Create bid
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Bid amount
+        </th>
+
+        <th>
+          Auctioner
+        </th>
+
+        <th>
+          Buyer
+        </th>
+
+        <th>
+          Department
+        </th>
+
+        <th>
+          Title
+        </th>
+
+        <th>
+          Price
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Deadline
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_bids.each do |a_bid| %>
+      <tr>
+        <td>
+          <%= a_bid.id %>
+        </td>
+
+        <td>
+          <%= a_bid.bid_amount %>
+        </td>
+
+        <td>
+          <%= a_bid.auctioner_id %>
+        </td>
+
+        <td>
+          <%= a_bid.buyer_id %>
+        </td>
+
+        <td>
+          <%= a_bid.department_id %>
+        </td>
+
+        <td>
+          <%= a_bid.title %>
+        </td>
+
+        <td>
+          <%= a_bid.price %>
+        </td>
+
+        <td>
+          <%= a_bid.description %>
+        </td>
+
+        <td>
+          <%= a_bid.deadline %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_bid.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_bid.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/bids/<%= a_bid.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

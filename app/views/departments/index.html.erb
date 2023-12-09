@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      List of all departments
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new department
+    </h2>
+
+    <form action="/insert_department" method="post">
+      <div>
+        <label for="bids_count_box">
+          Bids count
+        </label>
+
+        <input type="text" id="bids_count_box" name="query_bids_count">
+      </div>
+
+      <button>
+        Create department
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Bids count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_departments.each do |a_department| %>
+      <tr>
+        <td>
+          <%= a_department.id %>
+        </td>
+
+        <td>
+          <%= a_department.bids_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_department.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_department.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/departments/<%= a_department.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
