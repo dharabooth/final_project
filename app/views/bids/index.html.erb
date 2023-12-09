@@ -20,24 +20,17 @@
           Bid amount
         </label>
 
-        <input type="text" id="bid_amount_box" name="query_bid_amount">
+        <input type="text" id="bid_amount_box" name="query_price">
       </div>
 
       <div>
         <label for="auctioner_id_box">
-          Auctioner
+          Auctioner Name
         </label>
 
-        <input type="text" id="auctioner_id_box" name="query_auctioner_id">
+        <input type="text" id="auctioner_id_box" name="query_auctioner_name">
       </div>
 
-      <div>
-        <label for="buyer_id_box">
-          Buyer
-        </label>
-
-        <input type="text" id="buyer_id_box" name="query_buyer_id">
-      </div>
 
       <div>
         <label for="department_id_box">
@@ -47,13 +40,7 @@
         <input type="text" id="department_id_box" name="query_department_id">
       </div>
 
-      <div>
-        <label for="title_box">
-          Title
-        </label>
 
-        <input type="text" id="title_box" name="query_title">
-      </div>
 
       <div>
         <label for="price_box">
@@ -104,16 +91,10 @@
         </th>
 
         <th>
-          Buyer
-        </th>
-
-        <th>
           Department
         </th>
 
-        <th>
-          Title
-        </th>
+      
 
         <th>
           Price
@@ -146,7 +127,7 @@
         </td>
 
         <td>
-          <%= a_bid.bid_amount %>
+          <%= a_bid.price %>
         </td>
 
         <td>
@@ -154,15 +135,7 @@
         </td>
 
         <td>
-          <%= a_bid.buyer_id %>
-        </td>
-
-        <td>
           <%= a_bid.department_id %>
-        </td>
-
-        <td>
-          <%= a_bid.title %>
         </td>
 
         <td>

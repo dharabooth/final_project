@@ -14,16 +14,17 @@ class BidsController < ApplicationController
 
     @the_bid = matching_bids.at(0)
 
+    @matching_comments = Comment.where({ :bid_id => @the_bid.id })
+
     render({ :template => "bids/show" })
   end
 
   def create
     the_bid = Bid.new
-    the_bid.bid_amount = params.fetch("query_bid_amount")
-    the_bid.auctioner_id = params.fetch("query_auctioner_id")
-    the_bid.buyer_id = "None"
+    the_bid.price = params.fetch("query_price")
+    the_bid.auctioner_id = current_user.id
+    the_bid.auctioner_name = params.fetch("query_auctioner_name")
     the_bid.department_id = params.fetch("query_department_id")
-    the_bid.title = params.fetch("query_title")
     the_bid.description = params.fetch("query_description")
     the_bid.deadline = params.fetch("query_deadline")
 
@@ -39,11 +40,10 @@ class BidsController < ApplicationController
     the_id = params.fetch("path_id")
     the_bid = Bid.where({ :id => the_id }).at(0)
 
-    the_bid.bid_amount = params.fetch("query_bid_amount")
-    the_bid.auctioner_id = params.fetch("query_auctioner_id")
-    the_bid.buyer_id = "None"
+    the_bid.price = params.fetch("query_price")
+    the_bid.auctioner_id = current_user.id
+    the_bid.auctioner_name = params.fetch("query_auctioner_name")
     the_bid.department_id = params.fetch("query_department_id")
-    the_bid.title = params.fetch("query_title")
     the_bid.description = params.fetch("query_description")
     the_bid.deadline = params.fetch("query_deadline")
 
@@ -66,8 +66,8 @@ class BidsController < ApplicationController
   end
 
   def comment
-    input_bid_id = params.fetch("input_bid_id")
-    input_author_id = params.fetch("input_author_id")
+    input_bid_id = @the_bid
+    input_author_id = current_user.id
     input_comment = params.fetch("input_comment")
     new_comment = Comment.new
     new_comment.body = input_comment

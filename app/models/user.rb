@@ -26,7 +26,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many(:selling_bids, class_name: "Bid", foreign_key: "auctioner_id", dependent: :destroy)
-         has_many(:buying_bids, class_name: "Bid", foreign_key: "buyer_id", dependent: :destroy)
          has_many(:comments, class_name: "Comment", foreign_key: "author_id", dependent: :destroy)
          has_many(:likes, class_name: "Like", foreign_key: "user_id", dependent: :destroy)         
 

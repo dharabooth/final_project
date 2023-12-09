@@ -45,21 +45,23 @@
   Add a new bid
 </h2>
 
+
 <form action="/insert_bid" method="post">
 
-  <div>
+<div>
+    <label for="auctioner">
+      Name
+    </label>
+
+    <input type="text" id="auctioner" name="query_auctioner_name">
+  </div>
+
+<div>
     <label for="bid_amount_box">
       Bid Amount
     </label>
 
-    <input type="text" id="bid_amount_box" name="query_bid_amount">
-  </div>
-
-  <div>
-    <label for="title_box">
-      Title
-    </label>
-    <textarea id="title_box" name="query_title"></textarea>
+    <input type="text" id="bid_amount_box" name="query_price">
   </div>
 
   <div>
@@ -78,18 +80,13 @@
     <input type="date" id="expires_on_box" name="query_deadline">
   </div>
 
-   <div>
-        <label for="board_id_box">
-          Department
-        </label>
-
-        <input type="text" id="board_id_box" name="department_id">
-      </div>
+  <input type="hidden" id="department_id_box" name="query_department_id" value="<%= @the_department.id %>">
 
   <button>
     Add post
   </button>
 </form>
+
 
 <hr>
 
@@ -97,20 +94,24 @@
 
 <table border="1">
   <tr>
-    <th>Title</th>
     <th>Description</th>
     <th>Bid Amount</th>
     <th>Auctioner</th>
     <th>Deadline</th>
+    <th>Link to Bid</th>
   </tr>
 
   <% @active_bids.each do |a_bid| %>
     <tr>
-      <td><%= a_bid.title %></td>
-      <td><%= a_bid.decription %></td>
-      <td><%= a_bid.bid_amount %></td>      
+      <td><%= a_bid.price %></td>    
+      <td><%= a_bid.description %></td>  
       <td><%= a_bid.auctioner.full_name %></td>
       <td><%= a_bid.deadline.strftime("%b %e, %Y") %></td>
+      <td>
+          <a href="/bids/<%= a_bid.id %>">
+            Show details
+          </a>
+        </td>
     </tr>
   <% end %>
 </table>
@@ -119,20 +120,26 @@
 
 <table border="1">
     <tr>
-    <th>Title</th>
+
     <th>Description</th>
     <th>Bid Amount</th>
     <th>Auctioner</th>
     <th>Deadline</th>
+    <th>Link to Bid</th>
   </tr>
 
   <% @expired_bids.each do |a_bid| %>
     <tr>
-      <td><%= a_bid.title %></td>
-      <td><%= a_bid.decription %></td>
-      <td><%= a_bid.bid_amount %></td>      
+  
+      <td><%= a_bid.description %></td>
+      <td><%= a_bid.price %></td>      
       <td><%= a_bid.auctioner.full_name %></td>
       <td><%= a_bid.deadline.strftime("%b %e, %Y") %></td>
+      <td>
+          <a href="/bids/<%= a_bid.id %>">
+            Show details
+          </a>
+        </td>
     </tr>
   <% end %>
 </table>
