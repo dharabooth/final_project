@@ -19,7 +19,7 @@ class DepartmentsController < ApplicationController
 
   def create
     the_department = Department.new
-    the_department.bids_count = params.fetch("query_bids_count")
+    the_department.name = params.fetch("query_name")
 
     if the_department.valid?
       the_department.save
@@ -33,7 +33,7 @@ class DepartmentsController < ApplicationController
     the_id = params.fetch("path_id")
     the_department = Department.where({ :id => the_id }).at(0)
 
-    the_department.bids_count = params.fetch("query_bids_count")
+    the_department.name = params.fetch("query_name")
 
     if the_department.valid?
       the_department.save

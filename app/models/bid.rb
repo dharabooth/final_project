@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: bids
+#
+#  id            :integer          not null, primary key
+#  bid_amount    :integer
+#  deadline      :date
+#  description   :string
+#  price         :integer
+#  title         :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  auctioner_id  :integer
+#  buyer_id      :integer
+#  department_id :integer
+#
 class Bid < ApplicationRecord
   validates(:department_id, presence: true)
   
